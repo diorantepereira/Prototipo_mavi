@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Pedido | Mavi Doces e Salgados</title>
+
+<link rel="icon" href="assets/img/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .pagina-finalizacao { max-width: 850px; margin: auto; padding: 35px 18px; }
+    .titulo-pagina { text-align: center; color: #9E6D4E; }
+    .bloco-finalizacao {
+      background: #fff; border: 1px solid #FDC5C9;
+      border-radius: 14px; padding: 22px; margin: 20px 0;
+    }
+    .bloco-finalizacao h2 { color: #9E6D4E; margin-top: 0; }
+    .campo { margin-bottom: 15px; }
+    .campo label { display: block; margin-bottom: 6px; font-weight: bold; }
+    .campo input, .campo select, .campo textarea {
+      box-sizing: border-box; width: 100%; padding: 12px;
+      border: 1px solid #CFB699; border-radius: 8px;
+      font: inherit; background: white;
+    }
+    .campo textarea { min-height: 85px; resize: vertical; }
+    .opcoes-entrega { display: flex; flex-wrap: wrap; gap: 18px; }
+    .opcoes-entrega label { font-weight: normal; }
+    .linha-resumo { display: flex; justify-content: space-between; gap: 12px; margin: 10px 0; }
+    .total-final { color: #9E6D4E; font-size: 1.3rem; font-weight: bold; }
+    .botao-mavi {
+      display: inline-block; border: 0; cursor: pointer;
+      background: #FA8CB1; color: white; padding: 13px 22px;
+      border-radius: 22px; text-decoration: none; font-weight: bold;
+    }
+    .botao-voltar { background: #9E6D4E; }
+    .acoes-finalizacao { display: flex; flex-wrap: wrap; gap: 12px; }
+    .aviso-finalizacao { font-size: .9rem; color: #704B38; }
+    @media (max-width: 550px) {
+      .acoes-finalizacao .botao-mavi { width: 100%; text-align: center; box-sizing: border-box; }
+    }
+  </style>
+</head>
+
+<body id="topo">
+  
+<header class="header">
+    <div class="container header-content">
+
+        <a href="index.html" class="brand">
+            <img src="assets/img/logo.png" alt="Mavi Doces e Salgados">
+            <span>
+                Mavi
+                <small>Doces e Salgados</small>
+            </span>
+        </a>
+
+        <nav class="navigation">
+            <a href="index.html">Início</a>
+            <a href="produtos.html" class="active">Cardápio</a>
+            <a href="index.html#sobre">Sobre</a>
+            <a href="index.html#como-pedir">Como pedir</a>
+            <a href="index.html#contato">Contato</a>
+        </nav>
+
+        <a href="carrinho.html" class="cart-link active">
+            <span>Meu pedido</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+
+    </div>
+</header>
+
+
+  <main class="pagina-finalizacao active">
+    <h1 class="titulo-pagina">Finalizar Pedido</h1>
+    <p style="text-align:center;">
+      Preencha seus dados e confira as informações antes de enviar.
+    </p>
+
+    <form id="formPedido">
+
+      <section class="bloco-finalizacao">
+        <h2>Seus dados</h2>
+
+        <div class="campo">
+          <label for="nome">Nome completo *</label>
+          <input type="text" id="nome" name="nome" required maxlength="100">
+        </div>
+
+        <div class="campo">
+          <label for="telefone">Telefone / WhatsApp *</label>
+          <input type="tel" id="telefone" name="telefone"
+                 required maxlength="20" placeholder="(13) 99999-9999">
+        </div>
+      </section>
+
+      <section class="bloco-finalizacao">
+        <h2>Como deseja receber?</h2>
+
+        <div class="campo opcoes-entrega">
+          <label>
+            <input type="radio" name="tipoEntrega" value="retirada" checked>
+            Retirar no local
+          </label>
+
+          <label>
+            <input type="radio" name="tipoEntrega" value="entrega">
+            Receber por entrega
+          </label>
+        </div>
+
+        <div id="camposEndereco" hidden>
+          <div class="campo">
+            <label for="cep">CEP *</label>
+            <input type="text" id="cep" name="cep"
+                   placeholder="00000-000" maxlength="9">
+          </div>
+
+          <div class="campo">
+            <label for="endereco">Rua / Avenida *</label>
+            <input type="text" id="endereco" name="endereco" maxlength="150">
+          </div>
+
+          <div class="campo">
+            <label for="numero">Número *</label>
+            <input type="text" id="numero" name="numero" maxlength="20">
+          </div>
+
+          <div class="campo">
+            <label for="bairro">Bairro *</label>
+            <input type="text" id="bairro" name="bairro" maxlength="80">
+          </div>
+
+          <div class="campo">
+            <label for="complemento">Complemento / Referência</label>
+            <input type="text" id="complemento" name="complemento" maxlength="120">
+          </div>
+        </div>
+      </section>
+
+      <section class="bloco-finalizacao">
+        <h2>Forma de pagamento</h2>
+
+        <div class="campo">
+          <label for="pagamento">Selecione a forma de pagamento *</label>
+          <select id="pagamento" name="pagamento" required>
+            <option value="">Escolha uma opção</option>
+            <option value="Pix">Pix</option>
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de débito">Cartão de débito</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="observacoes">Observações do pedido</label>
+          <textarea id="observacoes" name="observacoes"
+                    maxlength="500"
+                    placeholder="Alguma informação adicional?"></textarea>
+        </div>
+      </section>
+
+      <section class="bloco-finalizacao">
+        <h2>Resumo do pedido</h2>
+
+        <div id="itensResumo"></div>
+
+        <hr>
+
+        <div class="linha-resumo">
+          <span>Subtotal:</span>
+          <strong id="subtotal">R$ 0,00</strong>
+        </div>
+
+        <div class="linha-resumo">
+          <span>Entrega:</span>
+          <strong id="taxaEntrega">R$ 0,00</strong>
+        </div>
+
+        <div class="linha-resumo total-final">
+          <span>Total:</span>
+          <strong id="totalPedido">R$ 0,00</strong>
+        </div>
+
+        <p class="aviso-finalizacao">
+          O valor da entrega apresentado é uma estimativa. A Mavi
+          confirmará o valor e a disponibilidade do pedido pelo WhatsApp.
+        </p>
+      </section>
+
+      <div class="acoes-finalizacao">
+        <a href="carrinho.html" class="botao-mavi botao-voltar">
+          Voltar ao carrinho
+        </a>
+
+        <button type="submit" class="botao-mavi">
+          Enviar pedido pelo WhatsApp
+        </button>
+      </div>
+
+    </form>
+  </main>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <!-- IDENTIDADE -->
+                <div class="footer-column footer-about">
+
+                    <a href="index.html" class="brand footer-brand">
+
+                        <img src="assets/img/logo.png"
+                            alt="Logo Mavi Doces e Salgados">
+
+                        <span>
+                            Mavi
+                            <small>Doces e Salgados</small>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Doces e salgados preparados com carinho
+                        para deixar seus momentos ainda mais especiais.
+                    </p>
+
+                    <p>
+                        Bertioga - SP
+                    </p>
+
+                </div>
+
+                <!-- NAVEGAÇÃO -->
+                <div class="footer-column">
+
+                    <h3>Navegação</h3>
+
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="produtos.html">Nosso cardápio</a></li>
+                        <li><a href="#sobre">Sobre a Mavi</a></li>
+                        <li><a href="#como-pedir">Como fazer um pedido</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="carrinho.html">Meu pedido</a></li>
+                    </ul>
+
+                </div>
+
+                <!-- ATENDIMENTO -->
+                <div class="footer-column">
+
+                    <h3>Atendimento</h3>
+
+                    <p>
+                        <strong>Segunda a sábado</strong><br>
+                        09h às 20h
+                    </p>
+
+                    <p>
+                        <strong>Domingo</strong><br>
+                        Fechado
+                    </p>
+
+                    <p>
+                        <strong>WhatsApp</strong><br>
+                        <a href="https://wa.me/5513997026002"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            (13) 99702-6002
+                        </a>
+                    </p>
+<p>
+    <a href="https://www.instagram.com/mavi_doces.salgados/"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fab fa-instagram instagram-icon-footer"></i>
+        Instagram
+    </a>
+</p>
+
+<p>
+    <a href="https://wa.me/5513997026002"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fab fa-whatsapp whatsapp-icon-footer"></i>
+        WhatsApp
+    </a>
+</p>
+                </div>
+
+                <!-- LOCALIZAÇÃO E REDES -->
+                <div class="footer-column">
+
+                    <h3>Encontre a Mavi</h3>
+
+                    <p>
+                        Av. Eng. Eduardo Correa da Costa Jr., 653-B,
+                        Vista Linda, Bertioga - SP.
+                    </p>
+
+                    <p>
+                        <a href="https://www.instagram.com/mavi_doces.salgados/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Instagram: @mavi_doces.salgados
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="https://wa.me/5513997026002"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Fale conosco pelo WhatsApp
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="footer-highlight">
+
+                <div>
+                    <strong>Deixe seu momento mais gostoso!</strong>
+
+                    <p>
+                        Conheça nossas opções e faça seu pedido.
+                    </p>
+                </div>
+
+                <a href="produtos.html" class="btn btn-primary">
+                    Acessar cardápio
+                </a>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © <span id="currentYear"></span>
+                    Mavi Doces e Salgados.
+                    Todos os direitos reservados.
+                </span>
+
+                <a href="#topo">Voltar ao topo ↑</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+<script src="assets/js/finalizar-pedido.js" defer></script>
+<script src="assets/js/config.js" defer></script>
+<script src="assets/js/storage.js" defer></script>
+<script src="assets/js/principal.js" defer></script>
+
+<a href="https://wa.me/5513997026002"
+   class="whatsapp-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Fale com a Mavi pelo WhatsApp"
+   title="Fale conosco pelo WhatsApp">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+</body>
+</html>

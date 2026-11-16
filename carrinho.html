@@ -1,0 +1,295 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Carrinho | Mavi Doces e Salgados</title>
+
+<link rel="icon" href="assets/img/logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .pagina-carrinho { max-width: 950px; margin: auto; padding: 35px 18px; }
+    .titulo-pagina { text-align: center; color: #9E6D4E; }
+    .item-carrinho {
+      display: flex; align-items: center; gap: 15px;
+      border: 1px solid #FDC5C9; border-radius: 13px;
+      padding: 15px; margin: 15px 0; background: white;
+    }
+    .item-carrinho img {
+      width: 90px; height: 90px; object-fit: cover;
+      border-radius: 10px; background: #FFFEe1;
+    }
+    .item-info { flex: 1; }
+    .item-info h3 { color: #9E6D4E; margin: 0 0 6px; }
+    .controles-quantidade { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+    .controles-quantidade button, .remover-item {
+      border: 0; cursor: pointer; border-radius: 8px;
+      padding: 7px 12px; background: #FDC5C9; color: #704B38;
+    }
+    .remover-item { background: #f5dddd; }
+    .resumo-carrinho {
+      background: #FFFEe1; border: 1px solid #CFB699;
+      border-radius: 13px; padding: 20px; margin-top: 25px;
+    }
+    .linha-total { display: flex; justify-content: space-between; gap: 10px; margin: 10px 0; }
+    .total-final { font-size: 1.3rem; font-weight: bold; color: #9E6D4E; }
+    .botao-mavi {
+      display: inline-block; border: 0; cursor: pointer;
+      background: #FA8CB1; color: white; padding: 12px 20px;
+      border-radius: 22px; text-decoration: none; font-weight: bold;
+    }
+    .botoes-carrinho { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .botao-voltar { background: #9E6D4E; }
+    .carrinho-vazio { text-align: center; padding: 45px 15px; }
+    @media (max-width: 550px) {
+      .item-carrinho { align-items: flex-start; flex-wrap: wrap; }
+      .item-carrinho img { width: 75px; height: 75px; }
+    }
+  </style>
+</head>
+
+<body id="topo">
+  
+<header class="header">
+    <div class="container header-content">
+
+        <a href="index.html" class="brand">
+            <img src="assets/img/logo.png" alt="Mavi Doces e Salgados">
+            <span>
+                Mavi
+                <small>Doces e Salgados</small>
+            </span>
+        </a>
+
+        <nav class="navigation">
+            <a href="index.html">Início</a>
+            <a href="produtos.html" >Cardápio</a>
+            <a href="index.html#sobre">Sobre</a>
+            <a href="index.html#como-pedir">Como pedir</a>
+            <a href="index.html#contato">Contato</a>
+        </nav>
+
+        <a href="carrinho.html" class="cart-link active">
+            <span>Meu pedido</span>
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+
+    </div>
+</header>
+
+
+  <main class="pagina-carrinho">
+    <h1 class="titulo-pagina">Meu Carrinho</h1>
+    <p style="text-align:center;">Confira os produtos escolhidos.</p>
+
+    <div id="listaCarrinho"></div>
+
+    <div id="resumoCarrinho" class="resumo-carrinho" hidden>
+      <div class="linha-total">
+        <span>Subtotal dos produtos:</span>
+        <strong id="subtotalCarrinho">R$ 0,00</strong>
+      </div>
+
+      <p style="font-size:.9rem;">
+        A taxa de entrega, quando aplicável, será calculada na próxima etapa.
+      </p>
+
+      <div class="botoes-carrinho">
+        <a href="produtos.html" class="botao-mavi botao-voltar">
+          Continuar comprando
+        </a>
+
+        <a href="finalizar-pedido.html" class="botao-mavi">
+          Continuar para finalização
+        </a>
+      </div>
+    </div>
+
+    <div id="carrinhoVazio" class="carrinho-vazio" hidden>
+      <h2>Seu carrinho está vazio.</h2>
+      <p>Que tal escolher algumas delícias da Mavi?</p>
+      <a href="produtos.html" class="botao-mavi">Ver cardápio</a>
+    </div>
+  </main>
+    <!-- RODAPÉ -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <!-- IDENTIDADE -->
+                <div class="footer-column footer-about">
+
+                    <a href="index.html" class="brand footer-brand">
+
+                        <img src="assets/img/logo.png"
+                            alt="Logo Mavi Doces e Salgados">
+
+                        <span>
+                            Mavi
+                            <small>Doces e Salgados</small>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Doces e salgados preparados com carinho
+                        para deixar seus momentos ainda mais especiais.
+                    </p>
+
+                    <p>
+                        Bertioga - SP
+                    </p>
+
+                </div>
+
+                <!-- NAVEGAÇÃO -->
+                <div class="footer-column">
+
+                    <h3>Navegação</h3>
+
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="produtos.html">Nosso cardápio</a></li>
+                        <li><a href="#sobre">Sobre a Mavi</a></li>
+                        <li><a href="#como-pedir">Como fazer um pedido</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="carrinho.html">Meu pedido</a></li>
+                    </ul>
+
+                </div>
+
+                <!-- ATENDIMENTO -->
+                <div class="footer-column">
+
+                    <h3>Atendimento</h3>
+
+                    <p>
+                        <strong>Segunda a sábado</strong><br>
+                        09h às 20h
+                    </p>
+
+                    <p>
+                        <strong>Domingo</strong><br>
+                        Fechado
+                    </p>
+
+                    <p>
+                        <strong>WhatsApp</strong><br>
+                        <a href="https://wa.me/5513997026002"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            (13) 99702-6002
+                        </a>
+                    </p>
+<p>
+    <a href="https://www.instagram.com/mavi_doces.salgados/"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fab fa-instagram instagram-icon-footer"></i>
+        Instagram
+    </a>
+</p>
+
+<p>
+    <a href="https://wa.me/5513997026002"
+       target="_blank"
+       rel="noopener noreferrer">
+        <i class="fab fa-whatsapp whatsapp-icon-footer"></i>
+        WhatsApp
+    </a>
+</p>
+                </div>
+
+                <!-- LOCALIZAÇÃO E REDES -->
+                <div class="footer-column">
+
+                    <h3>Encontre a Mavi</h3>
+
+                    <p>
+                        Av. Eng. Eduardo Correa da Costa Jr., 653-B,
+                        Vista Linda, Bertioga - SP.
+                    </p>
+
+                    <p>
+                        <a href="https://www.instagram.com/mavi_doces.salgados/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Instagram: @mavi_doces.salgados
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="https://wa.me/5513997026002"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Fale conosco pelo WhatsApp
+                        </a>
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="footer-highlight">
+
+                <div>
+                    <strong>Deixe seu momento mais gostoso!</strong>
+
+                    <p>
+                        Conheça nossas opções e faça seu pedido.
+                    </p>
+                </div>
+
+                <a href="produtos.html" class="btn btn-primary">
+                    Acessar cardápio
+                </a>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © <span id="currentYear"></span>
+                    Mavi Doces e Salgados.
+                    Todos os direitos reservados.
+                </span>
+
+                <a href="#topo">Voltar ao topo ↑</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+  <script src="assets/js/config.js" defer></script>
+  <script src="assets/js/storage.js" defer></script>
+  <script src="assets/js/carrinho.js" defer></script>
+<script src="assets/js/principal.js" defer></script>
+
+ 
+
+
+<a href="https://wa.me/5513997026002"
+   class="whatsapp-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Fale com a Mavi pelo WhatsApp"
+   title="Fale conosco pelo WhatsApp">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+</body>
+</html>
